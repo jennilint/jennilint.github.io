@@ -1,0 +1,154 @@
+body {
+    display: block;
+    margin-top: 60px;
+    margin-bottom: 60px;    
+
+}
+
+div.container {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+div.yearContainer {
+   margin: 10px;
+}
+
+div.ageGroupContainer {
+    display: flex;
+    position: relative;
+}
+
+div.ageGroupContainer p {
+    display: none;
+}
+
+div.ageGroupContainer:first-child > p {
+    margin-top: 45px;
+}
+
+div.yearContainer:first-child div.ageGroupContainer > p {
+    display: block;
+    position: absolute;
+    font-family: 'Roboto', sans-serif;
+    text-align: right;
+    font-size: 16px;
+    left: -70px;
+}
+
+div.square {
+    position: relative;
+    font-size: 60%;
+    background-color: #e0e0e0;
+}
+
+p.percentageText{
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: black;
+    display: none;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    position: absolute;
+}
+
+div.square:hover p {
+    display: block;
+}
+
+div.square:hover {
+    outline: 3px solid black;
+}
+
+div.infoContainer {
+    color: black;
+    background-color:#e0e0e0;
+    padding: 7px;
+    display: none;
+    left: 100px;
+    padding-top: 0px;
+    position: absolute;
+    z-index: 1;
+}
+
+p.infoContainerText {
+    font-family: 'Roboto', sans-serif;
+    font-size: 8px;
+}
+
+div.square:hover div.infoContainer {
+    display: block;
+    outline: 3px solid black;
+}
+
+h1 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 30px;
+    text-align: center;
+}
+
+h2 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    text-align: center;
+}
+
+a.link {
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    text-decoration: none;
+    color: black;
+}
+
+a.link:hover {
+    text-decoration: underline;
+}
+
+div.sourceLink {
+    text-align: center;
+}
+
+img {
+    display: none;
+}
+
+div.ageGroupContainer:first-child div.genderContainer > img {
+    display: block;
+    size: 100%;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.colorValue {
+    width: 390px;
+    height: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: linear-gradient(to right, #ff0000 , #ffff00, #00ff00);
+    display: flex;
+}
+
+p.colorValueText0 {
+    color: black;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    text-align: left;
+    margin: 0;
+    padding: 3px;
+    padding-left: 5px;
+}
+
+p.colorValueText100 {
+    color:black;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    text-align: right;
+    margin: 0;
+    flex: 1;
+    padding: 3px;
+    padding-right: 5px;
+}
