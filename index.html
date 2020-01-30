@@ -1,18 +1,495 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Video Game Players in Finland</title>
-        <link href="style.css" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Roboto:500&display=swap" rel="stylesheet">
-    </head>
-    <body>
-        <h1>VIDEO GAME PLAYERS IN FINLAND</h1>
-        <h2>% of population in 1997, 2002 and 2017</h2>
-        <div class="sourceLink">
-        <a href="http://pxnet2.stat.fi/PXWeb/pxweb/fi/StatFin/StatFin__eli__vpa__Digipelaaminen/?tablelist=true" class="link">Source: tilastokeskus.fi</a>
-        </div>
-        <script src="https://unpkg.com/papaparse@latest/papaparse.min.js"></script>
-        <script src=script.js></script>
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Heebo:500|Volkhov:700&display=swap" rel="stylesheet">
+    <title>Election Compass Data 2019</title>
+</head>
+<style>
+    body {
+        background-color: #f5f5f5;
+        padding: 20px;
+    }
+    h1 {
+        text-align: center;
+        font-family: 'Heebo', sans-serif;
+        font-size: 30px;
+        font-weight: 500;
+        margin-top: 50px;
+        width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    h2 {
+        text-align: center;
+        font-family: 'Heebo', sans-serif;
+        font-size: 20px;
+        width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+        font-weight: 500;
+    }
+    h3 {
+        text-align: center;
+        font-family: 'Volkhov', serif;
+        font-size: 16px;
+    }
+    .infoContainer {
+        width: 600px;
+        height: 50px;
+        padding: 40px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .questionContainer {
+        background-color: white;
+        border-radius: 12px;
+        display: block;
+        width: 600px;
+        padding: 40px;
+        padding-bottom: 60px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.19);
+    }
+    div.tooltip {	
+        position: absolute;			
+        text-align: center;			
+        width: 60px;					
+        height: 28px;					
+        padding: 2px;				
+        font: 12px sans-serif;		
+        background: lightsteelblue;	
+        border: 0px;		
+        border-radius: 8px;			
+        pointer-events: none;			
+    }
+</style>
+<body>
+    <h1>Average Answers of the Candidates from YLE's Election Compass in 2019</h1>
+    <script>
+        //C:\Users\Jenni\Desktop\Server>python -m http.server
+        var allAnswers1 = [];
+        var allAnswers2 = [];
+        var allAnswers3 = [];
+        var allAnswers4 = [];
+        var allAnswers5 = [];
+        var allAnswers6 = [];
+        var allAnswers7 = [];
+        var allAnswers8 = [];
+        var allAnswers9 = [];
+        var allAnswers10 = [];
+        var allAnswers11 = [];
+        var allAnswers12 = [];
+        var allAnswers13 = [];
+        var allAnswers14 = [];
+        var allAnswers15 = [];
+        var allAnswers16 = [];
+        var allAnswers17 = [];
+        var allAnswers18 = [];
+        var allAnswers19 = [];
+        var allAnswers20 = [];
+        var allAnswers21 = [];
+        var allAnswers22 = [];
+        var allAnswers23 = [];
+        var allAnswers24 = [];
+        var allAnswers25 = [];
+        var allAnswers26 = [];
+        var allAnswers27 = [];
+        var allAnswers28 = [];
+        var allAnswers29 = [];
+
+        var selectedData = [];
+
+        var selectedAnswers1 = [];
+        var selectedAnswers2 = [];
+        var selectedAnswers3 = [];
+        var selectedAnswers4 = [];
+        var selectedAnswers5 = [];
+        var selectedAnswers6 = [];
+        var selectedAnswers7 = [];
+        var selectedAnswers8 = [];
+        var selectedAnswers9 = [];
+        var selectedAnswers10 = [];
+        var selectedAnswers11 = [];
+        var selectedAnswers12 = [];
+        var selectedAnswers13 = [];
+        var selectedAnswers14 = [];
+        var selectedAnswers15 = [];
+        var selectedAnswers16 = [];
+        var selectedAnswers17 = [];
+        var selectedAnswers18 = [];
+        var selectedAnswers19 = [];
+        var selectedAnswers20 = [];
+        var selectedAnswers21 = [];
+        var selectedAnswers22 = [];
+        var selectedAnswers23 = [];
+        var selectedAnswers24 = [];
+        var selectedAnswers25 = [];
+        var selectedAnswers26 = [];
+        var selectedAnswers27 = [];
+        var selectedAnswers28 = [];
+        var selectedAnswers29 = [];
+
+        var selectedDataLength = 179;
+
+        d3.csv("data.csv").then(function(data){
+            for (var i = 0; i < data.length; i++) {
+                allAnswers1[i] = parseFloat(data[i].A1)
+                allAnswers2[i] = parseFloat(data[i].A2)
+                allAnswers3[i] = parseFloat(data[i].A3)
+                allAnswers4[i] = parseFloat(data[i].A4)
+                allAnswers5[i] = parseFloat(data[i].A5)
+                allAnswers6[i] = parseFloat(data[i].A6)
+                allAnswers7[i] = parseFloat(data[i].A7)
+                allAnswers8[i] = parseFloat(data[i].A8)
+                allAnswers9[i] = parseFloat(data[i].A9)
+                allAnswers10[i] = parseFloat(data[i].A10)
+                allAnswers11[i] = parseFloat(data[i].A11)
+                allAnswers12[i] = parseFloat(data[i].A12)
+                allAnswers13[i] = parseFloat(data[i].A13)
+                allAnswers14[i] = parseFloat(data[i].A14)
+                allAnswers15[i] = parseFloat(data[i].A15)
+                allAnswers16[i] = parseFloat(data[i].A16)
+                allAnswers17[i] = parseFloat(data[i].A17)
+                allAnswers18[i] = parseFloat(data[i].A18)
+                allAnswers19[i] = parseFloat(data[i].A19)
+                allAnswers20[i] = parseFloat(data[i].A20)
+                allAnswers21[i] = parseFloat(data[i].A21)
+                allAnswers22[i] = parseFloat(data[i].A22)
+                allAnswers23[i] = parseFloat(data[i].A23)
+                allAnswers24[i] = parseFloat(data[i].A24)
+                allAnswers25[i] = parseFloat(data[i].A25)
+                allAnswers26[i] = parseFloat(data[i].A26)
+                allAnswers27[i] = parseFloat(data[i].A27)
+                allAnswers28[i] = parseFloat(data[i].A28)
+                allAnswers29[i] = parseFloat(data[i].A29)
+                selectedData[i] = parseFloat(data[i].V)
+            };
+
+            const answers1 = allAnswers1.filter(function(value){return !Number.isNaN(value);});
+            const answers2 = allAnswers2.filter(function(value){return !Number.isNaN(value);});
+            const answers3 = allAnswers3.filter(function(value){return !Number.isNaN(value);});
+            const answers4 = allAnswers4.filter(function(value){return !Number.isNaN(value);});
+            const answers5 = allAnswers5.filter(function(value){return !Number.isNaN(value);});
+            const answers6 = allAnswers6.filter(function(value){return !Number.isNaN(value);});
+            const answers7 = allAnswers7.filter(function(value){return !Number.isNaN(value);});
+            const answers8 = allAnswers8.filter(function(value){return !Number.isNaN(value);});
+            const answers9 = allAnswers9.filter(function(value){return !Number.isNaN(value);});
+            const answers10 = allAnswers10.filter(function(value){return !Number.isNaN(value);});
+            const answers11 = allAnswers11.filter(function(value){return !Number.isNaN(value);});
+            const answers12 = allAnswers12.filter(function(value){return !Number.isNaN(value);});
+            const answers13 = allAnswers13.filter(function(value){return !Number.isNaN(value);});
+            const answers14 = allAnswers14.filter(function(value){return !Number.isNaN(value);});
+            const answers15 = allAnswers15.filter(function(value){return !Number.isNaN(value);});
+            const answers16 = allAnswers16.filter(function(value){return !Number.isNaN(value);});
+            const answers17 = allAnswers17.filter(function(value){return !Number.isNaN(value);});
+            const answers18 = allAnswers18.filter(function(value){return !Number.isNaN(value);});
+            const answers19 = allAnswers19.filter(function(value){return !Number.isNaN(value);});
+            const answers20 = allAnswers20.filter(function(value){return !Number.isNaN(value);});
+            const answers21 = allAnswers21.filter(function(value){return !Number.isNaN(value);});
+            const answers22 = allAnswers22.filter(function(value){return !Number.isNaN(value);});
+            const answers23 = allAnswers23.filter(function(value){return !Number.isNaN(value);});
+            const answers24 = allAnswers24.filter(function(value){return !Number.isNaN(value);});
+            const answers25 = allAnswers25.filter(function(value){return !Number.isNaN(value);});
+            const answers26 = allAnswers26.filter(function(value){return !Number.isNaN(value);});
+            const answers27 = allAnswers27.filter(function(value){return !Number.isNaN(value);});
+            const answers28 = allAnswers28.filter(function(value){return !Number.isNaN(value);});
+            const answers29 = allAnswers28.filter(function(value){return !Number.isNaN(value);})
+
+            var answers = [];
+            for (var i=1; i<30;i++){answers="answer"+i}
+
+            var totalSum1 = 0; for(var i in answers1) {totalSum1 += answers1[i];}; var numsCnt1 = answers1.length; var average1 = totalSum1 / numsCnt1;
+            var totalSum2 = 0; for(var i in answers2) {totalSum2 += answers2[i];}; var numsCnt2 = answers2.length; var average2 = totalSum2 / numsCnt2;
+            var totalSum3 = 0; for(var i in answers3) {totalSum3 += answers3[i];}; var numsCnt3 = answers3.length; var average3 = totalSum3 / numsCnt3;
+            var totalSum4 = 0; for(var i in answers4) {totalSum4 += answers4[i];}; var numsCnt4 = answers4.length; var average4 = totalSum4 / numsCnt4;
+            var totalSum5 = 0; for(var i in answers5) {totalSum5 += answers5[i];}; var numsCnt5 = answers5.length; var average5 = totalSum5 / numsCnt5;
+            var totalSum6 = 0; for(var i in answers6) {totalSum6 += answers6[i];}; var numsCnt6 = answers6.length; var average6 = totalSum6 / numsCnt6;
+            var totalSum7 = 0; for(var i in answers7) {totalSum7 += answers7[i];}; var numsCnt7 = answers7.length; var average7 = totalSum7 / numsCnt7;
+            var totalSum8 = 0; for(var i in answers8) {totalSum8 += answers8[i];}; var numsCnt8 = answers8.length; var average8 = totalSum8 / numsCnt8;
+            var totalSum9 = 0; for(var i in answers9) {totalSum9 += answers9[i];}; var numsCnt9 = answers9.length; var average9 = totalSum9 / numsCnt9;
+            var totalSum10 = 0; for(var i in answers10) {totalSum10 += answers10[i];}; var numsCnt10 = answers10.length; var average10 = totalSum10 / numsCnt10;
+            var totalSum11 = 0; for(var i in answers11) {totalSum11 += answers11[i];}; var numsCnt11 = answers11.length; var average11 = totalSum11 / numsCnt11;
+            var totalSum12 = 0; for(var i in answers12) {totalSum12 += answers12[i];}; var numsCnt12 = answers12.length; var average12 = totalSum12 / numsCnt12;
+            var totalSum13 = 0; for(var i in answers13) {totalSum13 += answers13[i];}; var numsCnt13 = answers13.length; var average13 = totalSum13 / numsCnt13;
+            var totalSum14 = 0; for(var i in answers14) {totalSum14 += answers14[i];}; var numsCnt14 = answers14.length; var average14 = totalSum14 / numsCnt14;
+            var totalSum15 = 0; for(var i in answers15) {totalSum15 += answers15[i];}; var numsCnt15 = answers15.length; var average15 = totalSum15 / numsCnt15;
+            var totalSum16 = 0; for(var i in answers16) {totalSum16 += answers16[i];}; var numsCnt16 = answers16.length; var average16 = totalSum16 / numsCnt16;
+            var totalSum17 = 0; for(var i in answers17) {totalSum17 += answers17[i];}; var numsCnt17 = answers17.length; var average17 = totalSum17 / numsCnt17;
+            var totalSum18 = 0; for(var i in answers18) {totalSum18 += answers18[i];}; var numsCnt18 = answers18.length; var average18 = totalSum18 / numsCnt18;
+            var totalSum19 = 0; for(var i in answers19) {totalSum19 += answers19[i];}; var numsCnt19 = answers19.length; var average19 = totalSum19 / numsCnt19;
+            var totalSum20 = 0; for(var i in answers20) {totalSum20 += answers20[i];}; var numsCnt20 = answers20.length; var average20 = totalSum20 / numsCnt20;
+            var totalSum21 = 0; for(var i in answers21) {totalSum21 += answers21[i];}; var numsCnt21 = answers21.length; var average21 = totalSum21 / numsCnt21;
+            var totalSum22 = 0; for(var i in answers22) {totalSum22 += answers22[i];}; var numsCnt22 = answers22.length; var average22 = totalSum22 / numsCnt22;
+            var totalSum23 = 0; for(var i in answers23) {totalSum23 += answers23[i];}; var numsCnt23 = answers23.length; var average23 = totalSum23 / numsCnt23;
+            var totalSum24 = 0; for(var i in answers24) {totalSum24 += answers24[i];}; var numsCnt24 = answers24.length; var average24 = totalSum24 / numsCnt24;
+            var totalSum25 = 0; for(var i in answers25) {totalSum25 += answers25[i];}; var numsCnt25 = answers25.length; var average25 = totalSum25 / numsCnt25;
+            var totalSum26 = 0; for(var i in answers26) {totalSum26 += answers26[i];}; var numsCnt26 = answers26.length; var average26 = totalSum26 / numsCnt26;
+            var totalSum27 = 0; for(var i in answers27) {totalSum27 += answers27[i];}; var numsCnt27 = answers27.length; var average27 = totalSum27 / numsCnt27;
+            var totalSum28 = 0; for(var i in answers28) {totalSum28 += answers28[i];}; var numsCnt28 = answers28.length; var average28 = totalSum28 / numsCnt28;
+            var totalSum29 = 0; for(var i in answers29) {totalSum29 += answers29[i];}; var numsCnt29 = answers29.length; var average29 = totalSum29 / numsCnt29;
+
+            var averages = [average1, average2, average3, average4, average5, average6, average7, average8, average9, average10,
+            average11, average12, average13, average14, average15, average16, average17, average18, average19, average20,
+            average21, average22, average23, average24, average25, average26, average27, average28, average29];
+
+
+            for (var i=0; i<2230; i++){
+                if (selectedData[i] === 1){
+                    selectedAnswers1[i] = parseFloat(answers1[i]);
+                    selectedAnswers2[i] = parseFloat(answers2[i]);
+                    selectedAnswers3[i] = parseFloat(answers3[i]);
+                    selectedAnswers4[i] = parseFloat(answers4[i]);
+                    selectedAnswers5[i] = parseFloat(answers5[i]);
+                    selectedAnswers6[i] = parseFloat(answers6[i]);
+                    selectedAnswers7[i] = parseFloat(answers7[i]);
+                    selectedAnswers8[i] = parseFloat(answers8[i]);
+                    selectedAnswers9[i] = parseFloat(answers9[i]);
+                    selectedAnswers12[i] = parseFloat(answers12[i]);
+                    selectedAnswers13[i] = parseFloat(answers13[i]);
+                    selectedAnswers15[i] = parseFloat(answers15[i]);
+                    selectedAnswers16[i] = parseFloat(answers16[i]);
+                    selectedAnswers18[i] = parseFloat(answers18[i]);
+                    selectedAnswers19[i] = parseFloat(answers19[i]);
+                    selectedAnswers20[i] = parseFloat(answers20[i]);
+                    selectedAnswers22[i] = parseFloat(answers22[i]);
+                    selectedAnswers23[i] = parseFloat(answers23[i]);
+                    selectedAnswers27[i] = parseFloat(answers27[i]);
+                }
+            }
+            for (var i=0; i<2229; i++){
+                if (selectedData[i] === 1){ //minus 1
+                    selectedAnswers10[i] = parseFloat(answers10[i]); 
+                    selectedAnswers11[i] = parseFloat(answers11[i]);
+                    selectedAnswers21[i] = parseFloat(answers21[i]);
+                    selectedAnswers24[i] = parseFloat(answers24[i]);
+                    selectedAnswers25[i] = parseFloat(answers25[i]);
+                }
+            }
+            for (var i=0; i<2204; i++){ //minus 26
+                if (selectedData[i] === 1){
+                    selectedAnswers26[i] = parseFloat(answers26[i]); 
+                    selectedAnswers28[i] = parseFloat(answers28[i]);
+                    selectedAnswers29[i] = parseFloat(answers29[i]);
+                }
+            }
+            for (var i=0; i<2190; i++){ //minus 40
+                if (selectedData[i] === 1){
+                    selectedAnswers14[i] = parseFloat(answers14[i]);
+                    selectedAnswers17[i] = parseFloat(answers17[i]);
+                }
+            }
+
+            
+            var selectedTotalSum1 = 0; for(var i in selectedAnswers1) {selectedTotalSum1 += selectedAnswers1[i];}; var selectedNumsCnt1 = selectedDataLength; var selectedAverage1 = selectedTotalSum1 / selectedNumsCnt1;
+            var selectedTotalSum2 = 0; for(var i in selectedAnswers2) {selectedTotalSum2 += selectedAnswers2[i];}; var selectedNumsCnt2 = selectedDataLength; var selectedAverage2 = selectedTotalSum2 / selectedNumsCnt2;
+            var selectedTotalSum3 = 0; for(var i in selectedAnswers3) {selectedTotalSum3 += selectedAnswers3[i];}; var selectedNumsCnt3 = selectedDataLength; var selectedAverage3 = selectedTotalSum3 / selectedNumsCnt3;
+            var selectedTotalSum4 = 0; for(var i in selectedAnswers4) {selectedTotalSum4 += selectedAnswers4[i];}; var selectedNumsCnt4 = selectedDataLength; var selectedAverage4 = selectedTotalSum4 / selectedNumsCnt4;
+            var selectedTotalSum5 = 0; for(var i in selectedAnswers5) {selectedTotalSum5 += selectedAnswers5[i];}; var selectedNumsCnt5 = selectedDataLength; var selectedAverage5 = selectedTotalSum5 / selectedNumsCnt5;
+            var selectedTotalSum6 = 0; for(var i in selectedAnswers6) {selectedTotalSum6 += selectedAnswers6[i];}; var selectedNumsCnt6 = selectedDataLength; var selectedAverage6 = selectedTotalSum6 / selectedNumsCnt6;
+            var selectedTotalSum7 = 0; for(var i in selectedAnswers7) {selectedTotalSum7 += selectedAnswers7[i];}; var selectedNumsCnt7 = selectedDataLength; var selectedAverage7 = selectedTotalSum7 / selectedNumsCnt7;
+            var selectedTotalSum8 = 0; for(var i in selectedAnswers8) {selectedTotalSum8 += selectedAnswers8[i];}; var selectedNumsCnt8 = selectedDataLength; var selectedAverage8 = selectedTotalSum8 / selectedNumsCnt8;
+            var selectedTotalSum9 = 0; for(var i in selectedAnswers9) {selectedTotalSum9 += selectedAnswers9[i];}; var selectedNumsCnt9 = selectedDataLength; var selectedAverage9 = selectedTotalSum9 / selectedNumsCnt9;
+            var selectedTotalSum10 = 0; for(var i in selectedAnswers10) {selectedTotalSum10 += selectedAnswers10[i];}; var selectedNumsCnt10 = selectedDataLength-1; var selectedAverage10 = selectedTotalSum10 / selectedNumsCnt10;
+            var selectedTotalSum11 = 0; for(var i in selectedAnswers11) {selectedTotalSum11 += selectedAnswers11[i];}; var selectedNumsCnt11 = selectedDataLength-1; var selectedAverage11 = selectedTotalSum11 / selectedNumsCnt11;
+            var selectedTotalSum12 = 0; for(var i in selectedAnswers12) {selectedTotalSum12 += selectedAnswers12[i];}; var selectedNumsCnt12 = selectedDataLength; var selectedAverage12 = selectedTotalSum12 / selectedNumsCnt12;
+            var selectedTotalSum13 = 0; for(var i in selectedAnswers13) {selectedTotalSum13 += selectedAnswers13[i];}; var selectedNumsCnt13 = selectedDataLength; var selectedAverage13 = selectedTotalSum13 / selectedNumsCnt12;
+            var selectedTotalSum14 = 0; for(var i in selectedAnswers14) {selectedTotalSum14 += selectedAnswers14[i];}; var selectedNumsCnt14 = selectedDataLength-40; var selectedAverage14 = selectedTotalSum14 / selectedNumsCnt14;
+            var selectedTotalSum15 = 0; for(var i in selectedAnswers15) {selectedTotalSum15 += selectedAnswers15[i];}; var selectedNumsCnt15 = selectedDataLength; var selectedAverage15 = selectedTotalSum15 / selectedNumsCnt15;
+            var selectedTotalSum16 = 0; for(var i in selectedAnswers16) {selectedTotalSum16 += selectedAnswers16[i];}; var selectedNumsCnt16 = selectedDataLength; var selectedAverage16 = selectedTotalSum16 / selectedNumsCnt16;
+            var selectedTotalSum17 = 0; for(var i in selectedAnswers17) {selectedTotalSum17 += selectedAnswers17[i];}; var selectedNumsCnt17 = selectedDataLength-40; var selectedAverage17 = selectedTotalSum17 / selectedNumsCnt17;
+            var selectedTotalSum18 = 0; for(var i in selectedAnswers18) {selectedTotalSum18 += selectedAnswers18[i];}; var selectedNumsCnt18 = selectedDataLength; var selectedAverage18 = selectedTotalSum18 / selectedNumsCnt18;
+            var selectedTotalSum19 = 0; for(var i in selectedAnswers19) {selectedTotalSum19 += selectedAnswers19[i];}; var selectedNumsCnt19 = selectedDataLength; var selectedAverage19 = selectedTotalSum19 / selectedNumsCnt19;
+            var selectedTotalSum20 = 0; for(var i in selectedAnswers20) {selectedTotalSum20 += selectedAnswers20[i];}; var selectedNumsCnt20 = selectedDataLength; var selectedAverage20 = selectedTotalSum20 / selectedNumsCnt20;
+            var selectedTotalSum21 = 0; for(var i in selectedAnswers21) {selectedTotalSum21 += selectedAnswers21[i];}; var selectedNumsCnt21 = selectedDataLength-1; var selectedAverage21 = selectedTotalSum21 / selectedNumsCnt21;
+            var selectedTotalSum22 = 0; for(var i in selectedAnswers22) {selectedTotalSum22 += selectedAnswers22[i];}; var selectedNumsCnt22 = selectedDataLength; var selectedAverage22 = selectedTotalSum22 / selectedNumsCnt22;
+            var selectedTotalSum23 = 0; for(var i in selectedAnswers23) {selectedTotalSum23 += selectedAnswers23[i];}; var selectedNumsCnt23 = selectedDataLength; var selectedAverage23 = selectedTotalSum23 / selectedNumsCnt23;
+            var selectedTotalSum24 = 0; for(var i in selectedAnswers24) {selectedTotalSum24 += selectedAnswers24[i];}; var selectedNumsCnt24 = selectedDataLength-1; var selectedAverage24 = selectedTotalSum24 / selectedNumsCnt24;
+            var selectedTotalSum25 = 0; for(var i in selectedAnswers25) {selectedTotalSum25 += selectedAnswers25[i];}; var selectedNumsCnt25 = selectedDataLength-1; var selectedAverage25 = selectedTotalSum25 / selectedNumsCnt25;
+            var selectedTotalSum26 = 0; for(var i in selectedAnswers26) {selectedTotalSum26 += selectedAnswers26[i];}; var selectedNumsCnt26 = selectedDataLength-26; var selectedAverage26 = selectedTotalSum26 / selectedNumsCnt26;
+            var selectedTotalSum27 = 0; for(var i in selectedAnswers27) {selectedTotalSum27 += selectedAnswers27[i];}; var selectedNumsCnt27 = selectedDataLength; var selectedAverage27 = selectedTotalSum27 / selectedNumsCnt27;
+            var selectedTotalSum28 = 0; for(var i in selectedAnswers28) {selectedTotalSum28 += selectedAnswers28[i];}; var selectedNumsCnt28 = selectedDataLength-26; var selectedAverage28 = selectedTotalSum28 / selectedNumsCnt28;
+            var selectedTotalSum29 = 0; for(var i in selectedAnswers29) {selectedTotalSum29 += selectedAnswers29[i];}; var selectedNumsCnt29 = selectedDataLength-26; var selectedAverage29 = selectedTotalSum29 / selectedNumsCnt29;
+
+            var selectedAverages = [selectedAverage1, selectedAverage2, selectedAverage3, selectedAverage4, selectedAverage5,
+            selectedAverage6, selectedAverage7, selectedAverage8, selectedAverage9, selectedAverage10, selectedAverage11, selectedAverage12,
+            selectedAverage13, selectedAverage14, selectedAverage15, selectedAverage16, selectedAverage17, selectedAverage18, selectedAverage19,
+            selectedAverage20, selectedAverage21, selectedAverage22, selectedAverage23, selectedAverage24, selectedAverage25, selectedAverage26,
+            selectedAverage27, selectedAverage28, selectedAverage29];
+
+            console.log(selectedAnswers10)
+
+            var questions = [
+            "Finland should be a forerunner in the fight against climate change – even at a cost to private individuals.",
+            "Finland should not fast-track a ban on the sale of diesel- and gasoline-powered cars.",
+            "The state should encourage people to eat less meat using measures such as taxation.",
+            "Finland fells too much of its forests.",
+            "The government should cut costs rather than raise taxes to balance the budget.",
+            "Universal basic income for all working-age residents should replace some current social benefits.",
+            "Finland would be better off outside the eurozone.",
+            "Public authorities should be the main provider of social and healthcare services.",
+            "Finland should outsource more senior care to private providers.",
+            "Terminally-ill patients should have the right to euthanasia.",
+            "Under-18s should be allowed to undergo gender reassignment treatment.",
+            "Wine and strong beer should be available in grocery stores.",
+            "Selling energy drinks to under 15-year-olds should be prohibited.",
+            "Snuff, chewing tobacco and nasal snuff	traveling importation limit should be decreaced from 1000 grams to 100 grams per day",
+            "Finland should adjust family policies so that childcare leave is equally distributed between parents.",
+            "Compulsory education should include vocational and upper secondary school.",
+            "Finland should delay the start of school summer holidays by two weeks to mid-June.",
+            "Finland should downsize its tertiary education network and redirect funds toward top institutions and research.",
+            "Rising immigration has increased insecurity in Finland.",
+            "Faced with an ageing population and declining birth rate, Finland needs more work-based immigration to support the welfare state.",
+            "NATO membership would enhance Finland’s security.",
+            "Legislators should define hate speech and make it a criminal offence.",
+            "Traditional values are the basis of a good life.",
+            "Finland must adopt tough measures to defend order and protect regular citizens.",
+            "It is acceptable for some groups in society to be better off than others.",
+            "Finnish law should give residents more freedom to make their own decisions, including bearing responsibility for their choices.",
+            "A politician’s main duty is to protect the interests of his or her constituents.",
+            "There are sacred or things that are bigger than an individual, that you have to defend even when it means you have to sacrifice your own advantages.",
+            "It is right to make sure you do not hurt anybody, even by accident."
+            ];
+            var infoContainer = document.createElement("div");
+            infoContainer.className = "infoContainer";
+            infoContainer.style.height = "50px";
+            document.body.append(infoContainer);
+
+            var info = d3.select(infoContainer)
+            .append("svg")
+            .attr("width", 600)
+            .attr("height", 60)
+
+            for (i=0; i<29; i++){
+                var questionContainer = document.createElement("div");
+                questionContainer.className = "questionContainer";
+                document.body.append(questionContainer);
+
+                var questionNumber = document.createElement("h3");
+                questionNumber.innerHTML = i + 1 + "/29";
+                questionContainer.append(questionNumber);
+
+                var questionText = document.createElement("h2");
+                questionText.innerHTML = questions[i];
+                questionContainer.append(questionText);
+
+                var index = "canvas" + i;
+                d3.select(questionContainer)
+                .append("svg")
+                .attr("width", 600)
+                .attr("height", 100)
+                .attr("id", index);
+
+                var canvas = d3.select("#canvas"+i)
+
+                var line = canvas.append("line")
+                .attr("x1", 100)
+                .attr("y1", 50)
+                .attr("x2", 500)
+                .attr("y2", 50)
+                .attr("stroke", "#262626")
+                .attr("stroke-width", 3)
+
+                var circle = canvas.append("circle")
+                .attr("cx", + 100)
+                .attr("cy", + 50)
+                .attr("r", 5)
+                .attr("fill", "#262626")
+
+                var circle = canvas.append("circle")
+                .attr("cx", + 300)
+                .attr("cy", + 50)
+                .attr("r", 5)
+                .attr("fill", "#262626")
+
+                var circle = canvas.append("circle")
+                .attr("cx", + 500)
+                .attr("cy", + 50)
+                .attr("r", 5)
+                .attr("fill", "#262626")
+
+                var textLabels = canvas.append("text")
+                .attr("x", 150)
+                .attr("y", 80)
+                .text("Disagree")
+                .attr("font-family", "'Heebo', sans-serif")
+                .attr("font-size", "16px")
+                .attr("font-weight", "500")
+                .attr("fill", "#262626");
+
+                var textLabels = canvas.append("text")
+                .attr("x", 400)
+                .attr("y", 80)
+                .text("Agree")
+                .attr("font-family", "'Heebo', sans-serif")
+                .attr("font-size", "16px")
+                .attr("font-weight", "500")
+                .attr("fill", "#262626");
+
+                if (averages[i] > 3.4){var color1 = "#d1ebd6"}
+                else if (averages[i] < 2.6){var color1 = "#e0bfbf"}
+                else {var color1 = "#f9fad7"}
+
+                if (selectedAverages[i] > 3.4){var color2 = "#d1ebd6"}
+                else if (selectedAverages[i] < 2.6){var color2 = "#e0bfbf"}
+                else {var color2 = "#f9fad7"}
+
+                var circleCandidates = canvas.append("circle")
+                .attr("cx", 150 + (50 * (averages[i])))
+                .attr("cy", 50)
+                .attr("r", 1)
+                .attr("fill", color1)
+                .attr("stroke", "#262626")
+                .attr("stroke-width", 3)
+                .attr("r", 13)
+                .attr("opacity", 0.9)			
+
+                var rectangleCandidates = canvas.append("rect")
+                .attr("x", + 150 + (50 * (selectedAverages[i])))
+                .attr("y", 35)
+                .attr("width", 30)
+                .attr("height", 30)
+                .attr("fill", color2)
+                .attr("stroke", "#262626")
+                .attr("stroke-width", 3)
+                .attr("opacity", 0.9)
+            };
+
+            var infoCircle = info.append("circle")
+            .attr("cx", 200)
+            .attr("cy", 18)
+            .attr("r", 13)
+            .attr("fill", "white")
+            .attr("stroke", "#262626")
+            .attr("stroke-width", 3)
+
+            var circleMeaning = info.append("text")
+            .attr("x", 130)
+            .attr("y", 55)
+            .text("All the candidates")
+            .attr("font-family", "'Heebo', sans-serif")
+
+            var infoRectangle = info.append("rect")
+            .attr("x", 400)
+            .attr("y", 3)
+            .attr("width", 30)
+            .attr("height", 30)
+            .attr("fill", "white")
+            .attr("stroke", "#262626")
+            .attr("stroke-width", 3)
+
+            var rectangleleMeaning = info.append("text")
+            .attr("x", 310)
+            .attr("y", 55)
+            .text("Only the chosen candidates")
+            .attr("font-family", "'Heebo', sans-serif")
+        });
+    </script>
+</body>
 </html>
